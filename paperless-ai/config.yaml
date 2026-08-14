@@ -1,5 +1,5 @@
 name: Paperless-AI
-version: "1.0.1"
+version: "1.0.2"
 slug: paperless_ai
 description: AI tagging/title/RAG chat for an existing Paperless-ngx instance (wraps clusterzx/paperless-ai)
 url: https://github.com/dez011/paperless-ai-bundle
@@ -9,8 +9,14 @@ arch:
 startup: application
 boot: auto
 init: false
+# Both ingress AND a direct port: this app's /setup redirect uses an
+# absolute path that breaks under HA's ingress proxy, so the direct port
+# is the reliable way to actually reach the first-run wizard. Ingress stays
+# available too once setup is done.
 ingress: true
 ingress_port: 3000
+ports:
+  3000/tcp: 3032
 panel_icon: mdi:robot
 map:
   - addon_config:rw
@@ -19,10 +25,10 @@ devices:
 cap_add:
   - NET_ADMIN
 options:
-  paperless_url: "http://homeassistant.local.hass.io:8000"
-  paperless_api_token: ""
-  paperless_username: ""
-  ollama_api_url: "http://homeassistant.local.hass.io:11434"
+  paperless_url: "CHANGE_ME_e.g_http://ca5234a0-paperless-ngx:8000"
+  paperless_api_token: "CHANGE_ME"
+  paperless_username: "CHANGE_ME"
+  ollama_api_url: "CHANGE_ME_e.g_http://100.101.81.127:11434"
   ollama_model: "llama3.2:3b"
   scan_interval: "*/30 * * * *"
   timezone: "America/Chicago"
