@@ -1,0 +1,18 @@
+name: Gotenberg
+version: "1.0.0"
+slug: gotenberg
+description: PDF/document conversion API used by Paperless-ngx (wraps gotenberg/gotenberg)
+url: https://github.com/dez011/paperless-ai-bundle
+arch:
+  - amd64
+  - aarch64
+startup: services
+boot: auto
+init: false
+ingress: false
+ports:
+  3000/tcp: 3000
+options:
+  chromium_disable_javascript: true
+schema:
+  chromium_disable_javascript: bool

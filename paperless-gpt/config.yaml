@@ -1,0 +1,44 @@
+name: Paperless-GPT
+version: "1.0.0"
+slug: paperless_gpt
+description: Vision OCR + metadata suggestions for an existing Paperless-ngx instance (wraps icereed/paperless-gpt)
+url: https://github.com/dez011/paperless-ai-bundle
+arch:
+  - amd64
+  - aarch64
+startup: application
+boot: auto
+init: false
+ingress: true
+ingress_port: 8080
+panel_icon: mdi:text-recognition
+map:
+  - addon_config:rw
+devices:
+  - /dev/net/tun
+cap_add:
+  - NET_ADMIN
+options:
+  paperless_base_url: "http://homeassistant.local.hass.io:8000"
+  paperless_api_token: ""
+  llm_model: "llama3.2:3b"
+  ollama_host: "http://homeassistant.local.hass.io:11434"
+  ollama_context_length: 8192
+  token_limit: 1000
+  llm_language: "English"
+  vision_llm_model: "minicpm-v:8b"
+  log_level: "INFO"
+  tailscale_enabled: false
+  tailscale_authkey: ""
+schema:
+  paperless_base_url: url
+  paperless_api_token: password
+  llm_model: str
+  ollama_host: url
+  ollama_context_length: int
+  token_limit: int
+  llm_language: str
+  vision_llm_model: str
+  log_level: list(DEBUG|INFO|WARN|ERROR)
+  tailscale_enabled: bool
+  tailscale_authkey: password

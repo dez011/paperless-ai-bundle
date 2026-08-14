@@ -1,0 +1,40 @@
+name: Paperless-AI
+version: "1.0.0"
+slug: paperless_ai
+description: AI tagging/title/RAG chat for an existing Paperless-ngx instance (wraps clusterzx/paperless-ai)
+url: https://github.com/dez011/paperless-ai-bundle
+arch:
+  - amd64
+  - aarch64
+startup: application
+boot: auto
+init: false
+ingress: true
+ingress_port: 3000
+panel_icon: mdi:robot
+map:
+  - addon_config:rw
+devices:
+  - /dev/net/tun
+cap_add:
+  - NET_ADMIN
+options:
+  paperless_url: "http://homeassistant.local.hass.io:8000"
+  paperless_api_token: ""
+  paperless_username: ""
+  ollama_api_url: "http://homeassistant.local.hass.io:11434"
+  ollama_model: "llama3.2:3b"
+  scan_interval: "*/30 * * * *"
+  timezone: "America/Chicago"
+  tailscale_enabled: false
+  tailscale_authkey: ""
+schema:
+  paperless_url: url
+  paperless_api_token: password
+  paperless_username: str
+  ollama_api_url: url
+  ollama_model: str
+  scan_interval: str
+  timezone: str
+  tailscale_enabled: bool
+  tailscale_authkey: password
