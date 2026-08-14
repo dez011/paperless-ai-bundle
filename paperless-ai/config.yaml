@@ -1,5 +1,5 @@
 name: Paperless-AI
-version: "1.0.0"
+version: "1.0.1"
 slug: paperless_ai
 description: AI tagging/title/RAG chat for an existing Paperless-ngx instance (wraps clusterzx/paperless-ai)
 url: https://github.com/dez011/paperless-ai-bundle
